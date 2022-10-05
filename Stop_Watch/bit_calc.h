@@ -7,4 +7,3 @@
 #define assign_bit(var,bit_no,value) do{ if(value==1) set_bit(var,bit_no);\
 	                                     else clear_bit(var,bit_no); } while(0)
 #endif
-
