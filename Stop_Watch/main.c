@@ -39,6 +39,7 @@ while(1){
 }
 
 
+
 void App_init(void){
 	S1.Type=Anode;
 	S1.enable_pin=DIO_Pin_7;
@@ -69,7 +70,6 @@ void App_init(void){
 
 	Ex_Int_set_level(Ex_Int_0,Ex_Int_Falling_edge);
 	Ex_Int_set_level(Ex_Int_0,Ex_Int_Falling_edge);
-
 
 	Ex_Int_Enable(Ex_Int_0);
 	Ex_Int_Enable(Ex_Int_1);
