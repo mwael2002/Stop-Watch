@@ -21,6 +21,8 @@ U8 no_S2=0;
 U8 start_flag=0;
 U8 stop_flag=0;
 
+void App_init(void);
+
 void time_increament(void);
 
 void stop_restart_counter(void);
@@ -29,47 +31,51 @@ void start_counter(void);
 
 void main(void){
 
-
-S1.Type=Anode;
-S1.enable_pin=DIO_Pin_7;
-S1.no_Port=Group_B;
-S1.enable_port=Group_D;
-
-S2.Type=Anode;
-S2.enable_pin=DIO_Pin_6;
-S2.no_Port=Group_A;
-S2.enable_port=Group_D;
-
-SS_init(&S1);
-SS_init(&S2);
-
-SS_ON(&S1);
-SS_ON(&S2);
-SS_Set_Number(&S1,0);
-SS_Set_Number(&S2,0);
-
-DIO_set_pin_direction(Group_D,DIO_Pin_2,INPUT);
-DIO_set_pin_direction(Group_D,DIO_Pin_3,INPUT);
-
-DIO_set_pin_value(Group_D,DIO_Pin_2,HIGH);
-DIO_set_pin_value(Group_D,DIO_Pin_3,HIGH);
-
-Ex_Int_call_back(start_counter,Ex_Int_0);
-Ex_Int_call_back(stop_restart_counter,Ex_Int_1);
-
-Ex_Int_set_level(Ex_Int_0,Ex_Int_Falling_edge);
-Ex_Int_set_level(Ex_Int_0,Ex_Int_Falling_edge);
-
-
-Ex_Int_Enable(Ex_Int_0);
-Ex_Int_Enable(Ex_Int_1);
-
-Global_Int_En_Dis(Global_Int_Enable);
-
+App_init();
 
 while(1){
 
 }
+}
+
+
+void App_init(void){
+	S1.Type=Anode;
+	S1.enable_pin=DIO_Pin_7;
+	S1.no_Port=Group_B;
+	S1.enable_port=Group_D;
+
+	S2.Type=Anode;
+	S2.enable_pin=DIO_Pin_6;
+	S2.no_Port=Group_A;
+	S2.enable_port=Group_D;
+
+	SS_init(&S1);
+	SS_init(&S2);
+
+	SS_ON(&S1);
+	SS_ON(&S2);
+	SS_Set_Number(&S1,0);
+	SS_Set_Number(&S2,0);
+
+	DIO_set_pin_direction(Group_D,DIO_Pin_2,INPUT);
+	DIO_set_pin_direction(Group_D,DIO_Pin_3,INPUT);
+
+	DIO_set_pin_value(Group_D,DIO_Pin_2,HIGH);
+	DIO_set_pin_value(Group_D,DIO_Pin_3,HIGH);
+
+	Ex_Int_call_back(start_counter,Ex_Int_0);
+	Ex_Int_call_back(stop_restart_counter,Ex_Int_1);
+
+	Ex_Int_set_level(Ex_Int_0,Ex_Int_Falling_edge);
+	Ex_Int_set_level(Ex_Int_0,Ex_Int_Falling_edge);
+
+
+	Ex_Int_Enable(Ex_Int_0);
+	Ex_Int_Enable(Ex_Int_1);
+
+	Global_Int_En_Dis(Global_Int_Enable);
+
 }
 
 void time_increament(void){
